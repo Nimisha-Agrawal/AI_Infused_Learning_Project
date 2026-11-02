@@ -1,8 +1,12 @@
+import os
 import json
 from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
-client = OpenAI()
+client = OpenAI(
+     api_key=os.getenv("GROQ_API_KEY"),
+     base_url="https://api.groq.com/openai/v1"
+)
 
 PRICES = {"shoes": 799, "hat": 399, "bag": 1420, "shorts": 1299, "pants": 1699}
 
@@ -10,7 +14,7 @@ def get_price(item):
     print(f"🔧 tool called: get_price({item})")     # so you SEE it happen
     return f"₹{PRICES.get(item.lower(), 'unknown')}"
 
-    tools = [{
+tools = [{
     "type": "function",                                      # ①
     "function": {
         "name": "get_price",                                 # ②

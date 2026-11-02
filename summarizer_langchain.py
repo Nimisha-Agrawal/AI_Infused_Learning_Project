@@ -33,7 +33,7 @@ load_dotenv()
 prompt = ChatPromptTemplate.from_template(            # ①
     "Give a short, friendly summary of this website:\n\n{website}")
 
-model  = ChatOpenAI(model="gpt-4o-mini", temperature=0.3)   # ②
+model  = ChatOpenAI(model="openai/gpt-oss-120b", temperature=0.3)   # ②
 
 parser = StrOutputParser()                             # ③
 
